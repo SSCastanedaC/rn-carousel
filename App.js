@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ScrollView, StyleSheet, Text, View, Dimensions} from 'react-native';
+import {ScrollView, StyleSheet, Text, View, Dimensions, Image} from 'react-native';
 
 var {height, width} = Dimensions.get('window');
 
