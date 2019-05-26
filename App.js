@@ -27,7 +27,7 @@ export default class Carousel extends Component{
                 image: require('./assets/youtube.png')
             }
         ],
-        itemActive: 0
+        activeItem: 0
     }
 
     render(){
