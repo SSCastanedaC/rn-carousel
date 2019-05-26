@@ -42,7 +42,7 @@ export default class Carousel extends Component{
                     ))}
                     <View style={styles.dotsContainer}>
                         { this.state.slides.map((item, key) => (
-                            <Image key={key} style={styles.dots} source={this.state.activeItem == key ? require('./../../assets/login/circle-salmon.png') : require('./../../assets/login/circle-white.png')}></Image>                            
+                            <Image key={key} style={styles.dots} source={this.state.activeItem == key ? require('./assets/circle-salmon.png') : require('./assets/circle-white.png')}></Image>
                         ))}                        
                     </View>
                 </ScrollView>
