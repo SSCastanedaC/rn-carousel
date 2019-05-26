@@ -32,21 +32,21 @@ export default class Carousel extends Component{
 
     render(){
         return(
-            <View style={{flex:1}}>
-                <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false}>                    
+            <View style={{flex:1, backgroundColor:'#444'}}>              
+                <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false} onScroll={(event: Object) => this.setState({activeItem: Math.round((event.nativeEvent.contentOffset.x)/width)})}>
                     {this.state.slides.map((item, key) => (
                         <View key={key} style={styles.slideContainer}>
-                            <Image source={this.state.slides[key][0]} style={styles.images} resizeMode='cover'></Image>
-                            <Text style={styles.text}>{this.state.slides[key][1]}</Text>
+                            <Image source={this.state.slides[key].image} style={styles.images} resizeMode='cover'></Image>
+                            <Text style={styles.text}>{this.state.slides[key].text}</Text>
                         </View>
                     ))}
-                    <View style={styles.dotsContainer}>
-                        { this.state.slides.map((item, key) => (
-                            <Image key={key} style={styles.dots} source={this.state.activeItem == key ? require('./assets/circle-salmon.png') : require('./assets/circle-white.png')}></Image>
-                        ))}                        
-                    </View>
-                </ScrollView>
-            </View>
+                </ScrollView>              
+                <View style={styles.dotsContainer}>
+                    { this.state.slides.map((item, key) => (
+                        <Image key={key} style={styles.dots} source={this.state.activeItem == key ? require('./assets/circle-salmon.png') : require('./assets/circle-white.png')}></Image>
+                    ))}                        
+                </View>
+              </View>            
         )
     }
 }
