@@ -1,20 +1,30 @@
 import React, {Component} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View, Dimensions} from 'react-native';
+
+var {height, width} = Dimensions.get('window');
 
 export default class Carousel extends Component{
     state = {
         slides: [
             {
-                text: 'This is text #1',
-                image: require('pathToImage1')
+                text: 'LinkedIn',
+                image: require('./assets/linkedin.png')
             },
             {
-                text: 'This is text #1',
-                image: require('pathToImage1')
+                text: 'Facebook',
+                image: require('./assets/facebook.png')
             },
             {
-                text: 'This is text #1',
-                image: require('pathToImage1')
+                text: 'Spotify',
+                image: require('./assets/spotify.png')
+            },
+            {
+                text: 'Twitter',
+                image: require('./assets/twitter.png')
+            },
+            {
+                text: 'Youtube',
+                image: require('./assets/youtube.png')
             }
         ],
         itemActive: 0
@@ -25,13 +35,47 @@ export default class Carousel extends Component{
             <View style={{flex:1}}>
                 <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false}>                    
                     {this.state.slides.map((item, key) => (
-                        <View>
-                            <Text>{item}</Text>
+                        <View key={key} style={styles.slideContainer}>
+                            <Image source={this.state.slides[key][0]} style={styles.images} resizeMode='cover'></Image>
+                            <Text style={styles.text}>{this.state.slides[key][1]}</Text>
                         </View>
                     ))}
+                    <View style={styles.dotsContainer}>
+                        { this.state.slides.map((item, key) => (
+                            <Image key={key} style={styles.dots} source={this.state.activeItem == key ? require('./../../assets/login/circle-salmon.png') : require('./../../assets/login/circle-white.png')}></Image>                            
+                        ))}                        
+                    </View>
                 </ScrollView>
             </View>
         )
     }
-
 }
+
+const styles = StyleSheet.create({
+    slideContainer: {
+        width:width,
+        paddingHorizontal:0.1*width,
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    images: {
+        width:200,
+        height:200,
+        marginBottom: 50
+    },
+    text: {
+        color:'#fff',
+        fontSize:22,
+        fontWeight:'bold'
+    },
+    dotsContainer: {
+        flexDirection:'row',
+        justifyContent:'center',
+        alignContent:'center'
+    },
+    dots: {
+        width:30,
+        height:30,
+        marginHorizontal:3
+    }
+})
